@@ -1,0 +1,51 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        colors = true
+        interval = 10
+        color_good =     '#51394c'  
+        color_degraded = '#decf9a'  
+        color_bad =      '#ac443e'
+}
+
+order += "ipv6"
+order += "disk /"
+order += "run_watch DHCP"
+order += "run_watch VPN"
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "battery 0"
+order += "load"
+order += "tztime local"
+
+wireless _first_ {
+        format_up = "Wi-Fi: (%quality-%essid) %ip"
+        format_down = "Wi-Fi Fora/Desconectado"
+}
+
+ethernet _first_ {
+        format_up = "Eth: Conectada" 
+        format_down = "Eth: Desconetada"
+}
+
+battery 0 {
+        format = "%status %percentage %remaining"
+}
+
+tztime local {
+	format = "%d_%m_%Y, é %A meus bacanos, %H:%M:%S"
+}
+
+load {
+        format = "Load: %1min"
+}
+
+disk "/" {
+        format = "%avail"
+}
