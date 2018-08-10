@@ -1,51 +1,151 @@
-set nocompatible
-filetype plugin on
-syntax on
-set tabstop=4
-set softtabstop=4
-set expandtab
-set number
-set showcmd
-filetype indent on
-set wildmenu
-set lazyredraw
-set showmatch
-set incsearch
-set hlsearch
-set encoding=utf-8
-"set relativenumber
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>IFRS BG</title>
+		<?php include_once 'inc/site_skin.inc'; ?>
+	</head>
+	<body>
 
-nnoremap <leader><space> :nohlsearch<CR>
-nnoremap <buffer> <F9> :exec '!python3' shellescape(@%, 1)<cr>
+		<header>
+			<h1>Carrinho de compras do IFRS.</h1>
+			<div class="menu">
 
-nnoremap <Space><Space> <Esc>/<++><Enter>"_c4l
+				<a href="produtos.php">Voltar ao site</a>
+				
+			</div>
+		</header>
 
-" tags html ----------------------------------------------------------------
-autocmd FileType php,html inoremap <html <!DOCTYPE><Enter><html><Enter><head><Enter><title><++></title><Enter><meta<Space>charset="UTF-8"><Enter><link<Space>rel="stylesheet"<Space>type="text/css"<Space>href="main.css"><Enter></head><Enter><body><Enter><Enter><++><Enter><Enter></body><Enter></html>
+		<br clear="all">
 
-autocmd FileType php,html inoremap <h1 <h1></h1><Enter><Enter><++><Esc>2kf<i
-autocmd FileType php,html inoremap <h2 <h2></h2><Enter><Enter><++><Esc>2kf<i
-autocmd FileType php,html inoremap <h3 <h3></h3><Enter><Enter><++><Esc>2kf<i
-autocmd FileType php,html inoremap <h4 <h4></h4><Enter><Enter><++><Esc>2kf<i
-autocmd FileType php,html inoremap <h5 <h5></h5><Enter><Enter><++><Esc>2kf<i
-autocmd FileType php,html inoremap <h6 <h6></h6><Enter><Enter><++><Esc>2kf<i
+		<form method="POST" action="finalizarcompra.php" name="comprar">
+			<table border="0">
+                <?php
 
-autocmd FileType php,html inoremap <b <strong></strong><Space><++><Esc>FbT>i
-autocmd FileType php,html inoremap <i <em></em><Space><++><Esc>FeT>i
+                    //Inicia a sessão
+                    session_start();
 
-autocmd FileType php,html inoremap <p <p></p><Enter><Enter><++><Esc>02kf>a
-autocmd FileType php,html inoremap <div <div<Space>class="<++>"></div><Enter><Enter><++><Esc>02kf>a
+                    //verifica se o carrinho de compras está vazio
+					// se sim, volta para produtos.php
+                    if (empty($_SESSION['carrinho'])) {
+						echo '<h1>Carrinho vazio!</h1>';
+                        echo '<h1>Compre algo para mostrar em seu carrinho!</h1>';
+						exit(); 
+                    }else{
+                        
+                        // Abre o Arquivo no Modo r (para leitura)
+                        $arquivo = fopen('produtos.txt', 'r');
+                        // Lê o conteúdo do arquivo 
+                        while (!feof($arquivo)) {
+                            //Mostra uma linha do arquivo
+                            $linha = fgets($arquivo, 1024);
+                            //separa os conteúdos desta linha (pelo caractere |) e coloca em um vetor
+                            $produto = explode("|", $linha);
+                            //Verifica pelo id se o produto já está no carrinho de compras
+                            if (!in_array($produto[0], $_SESSION['carrinho'])) {
+                                //Adiciona o produto com toda sua descrição no carrinho de compras
+                            }
 
-autocmd FileType php,html inoremap <a <a<Space>href=""><++></a><Space><++><Esc>14hi
-autocmd FileType php,html inoremap <e <a<Space>target="_blank"<Space>href=""><++></a><Space><++><Esc>14hi
-autocmd FileType php,html inoremap <ul <ul><Enter><li></li><Enter></ul><Enter><Enter><++><Esc>03kf<i
-autocmd FileType php,html inoremap <li <Esc>o<li></li><Esc>F>a
-autocmd FileType php,html inoremap <ol <ol><Enter><li></li><Enter></ol><Enter><Enter><++><Esc>03kf<i
-autocmd FileType php,html inoremap <im <img<Space>src="<++>"<Space>width="<++>"<Space>height="<++>">
-autocmd FileType php,html inoremap <td <td></td><++><Esc>Fdcit
-autocmd FileType php,html inoremap <tr <tr></tr><Enter><++><Esc>kf<i
-autocmd FileType php,html inoremap <th <th></th><++><Esc>Fhcit
-autocmd FileType php,html inoremap <tab <table><Enter></table><Esc>O
-autocmd FileType php,html inoremap <dt <dt></dt><Enter><dd><++></dd><Enter><++><esc>2kcit
-autocmd FileType php,html inoremap <dl <dl><Enter><Enter></dl><enter><enter><++><esc>3kcc
-" ---------------------------------------------------------------------------------------------
+                        }
+                        // Fecha arquivo aberto
+                        fclose($arquivo);
+                    }
+					
+					$c = 1;
+					
+					foreach ($_SESSION['carrinho'] as $key => $value) {
+						echo "
+								<tr>
+									<td>
+										<figure>
+											<img name='imagem' src='{$value['imagem']}' >
+											<figcaption name='produto'>{$value['nome']}</figcaption>
+										</figure>
+									</td>
+									<td><p>{$value['descricao']}</p></td>
+									<td><p>Preço: {$value['preco']} Reais</p></td>
+									<td>
+										Tamanho: <select name='select{$c}'>
+											<option value='PP'>PP</option>
+											<option value='P'>P</option>
+											<option value='M'>M</option>
+											<option value='G'>G</option>
+											<option value='GG'>GG</option>
+										</select>
+										<br>
+										Quantidade: <input name='quant{$c}' id='{$c}' type='number' onchange='calcula({$value['preco']}, this.id, this.value)' value='1'  min='1' step='1'>	
+										<hr>
+										<h2>Subtotal: </h2>
+										<b id='a{$c}'>{$value['preco']} Reais</b>
+										<input type='hidden' name='subtot{$c}' id='aa{$c}' value='{$value['preco']}'>
+									</td>
+								</tr>
+						";
+						
+						$c++;
+						
+					}
+
+					$precoTotal = 0;
+					
+					foreach ($_SESSION['carrinho'] as $key => $value) {
+						$precoTotal += $value['subtotal'];
+					}
+
+                    //echo"<pre>";
+					//var_dump($_SESSION['carrinho']);    
+                    //echo"</pre>";
+                ?>
+			</table>
+				
+			<input name='totalCompra' id='totalC' type='hidden' value='<?php echo $precoTotal; ?>'>
+			<input type="submit" value="Finalizar Compra" name="submit">
+			
+        </form>
+		
+		<div>
+			<b>Preço total: </b>
+			<b id="total"><?php echo $precoTotal; ?></b>
+			<b>Reais</b>
+		</div>
+		
+			<script>
+			
+				var subtotal = 0; //var com o subtotal de um produto
+				var totalVet = new Array(); // vetor como subtotal de todos produtos do carrinho, com a quantia modificada
+				
+				var totalPhp = <?php echo json_encode($precoTotal); ?>;
+				
+				totalVet[0] = totalPhp;
+				
+				function calcula(preco, id, quantia){
+					
+					parseFloat(preco);
+					parseInt(quantia);
+					
+					subtotal = preco * --quantia; // --, para nao fazer o cliente pagar por um produto a mais
+					
+					totalVet[id] = subtotal;
+					
+					//console.log(preco, id);
+					
+					dindin(subtotal);
+					
+					subtotal = preco * ++quantia;
+					
+					document.getElementById('a' + id).innerHTML = subtotal.toFixed(2) + ' Reais';
+					document.getElementById('aa' + id).value= subtotal.toFixed(2);
+				}
+				
+				function dindin(total){
+					
+					var soma = 0;
+					for(var i in totalVet) { soma += totalVet[i]; }
+					
+					document.getElementById('total').innerHTML = soma.toFixed(2);
+					document.getElementById("totalC").value = soma.toFixed(2);
+				}
+				
+			</script>
+			
+	</body>
+</html> 
