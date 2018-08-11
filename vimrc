@@ -1,4 +1,4 @@
-colorscheme peachpuff
+colorscheme elflord
 set nocompatible
 filetype plugin on
 syntax on
