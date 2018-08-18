@@ -4,7 +4,8 @@
 
 ! special colors
 *.foreground:  #DECF9A
-*.background:  #0B1414
+####*.background:  #0B1414
+*.background:  #000000
 *.cursorColor: #DECF9A
 ! black
 *.color0:      #271B1C
@@ -36,7 +37,7 @@ URxvt*scrollBar_right:   false
 
 URxvt*transparent:       false
 
-URxvt.font: xft:Monospace:pixelsize=12
+URxvt.font: xft:Monospace:pixelsize=13
 URxvt.letterSpace: 0
 
 *antialias:  false
