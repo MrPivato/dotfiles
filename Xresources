@@ -14,12 +14,13 @@
 *.color9:      #51394C
 ! green
 *.color2:      #f8682e
-*.color10:     #6AAF6A
+#### #6AAF6A
+*.color10:     #ce364f
 ! yellow
 *.color3:      #AC9768
 *.color11:     #69666B
 ! blue
-*.color4:      #54262E
+*.color4:      #931210
 *.color12:     #fdc328
 ! magenta
 *.color5:      #6F7776
