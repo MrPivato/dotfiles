@@ -66,7 +66,7 @@ function! Smart_TabComplete()
 endfunction
 inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
-colorscheme elflord
+colorscheme delek
 syntax on
 set tabstop=4
 set softtabstop=4
@@ -106,12 +106,12 @@ nnoremap <Space><Space> <Esc>/<++><Enter>"_c4l
 "" tags html ----------------------------------------------------------------
 autocmd FileType php,html inoremap <html <!DOCTYPE<Space>html><Enter><html><Enter><head><Enter><title><++></title><Enter><meta<Space>charset="UTF-8"><Enter><link<Space>rel="stylesheet"<Space>type="text/css"<Space>href="main.css"><Enter></head><Enter><body><Enter><Enter><++><Enter><Enter></body><Enter></html>
 
-autocmd FileType php,html inoremap <h1 <h1></h1><Enter><Enter><++><Esc>2kf<i
-autocmd FileType php,html inoremap <h2 <h2></h2><Enter><Enter><++><Esc>2kf<i
-autocmd FileType php,html inoremap <h3 <h3></h3><Enter><Enter><++><Esc>2kf<i
-autocmd FileType php,html inoremap <h4 <h4></h4><Enter><Enter><++><Esc>2kf<i
-autocmd FileType php,html inoremap <h5 <h5></h5><Enter><Enter><++><Esc>2kf<i
-autocmd FileType php,html inoremap <h6 <h6></h6><Enter><Enter><++><Esc>2kf<i
+autocmd FileType php,html inoremap <h1 <h1></h1><Esc>
+autocmd FileType php,html inoremap <h2 <h2></h2><Esc>
+autocmd FileType php,html inoremap <h3 <h3></h3><Esc>
+autocmd FileType php,html inoremap <h4 <h4></h4><Esc>
+autocmd FileType php,html inoremap <h5 <h5></h5><Esc>
+autocmd FileType php,html inoremap <h6 <h6></h6><Esc>
 
 autocmd FileType php,html inoremap <b <strong></strong><Space><++><Esc>FbT>i
 autocmd FileType php,html inoremap <i <em></em><Space><++><Esc>FeT>i
