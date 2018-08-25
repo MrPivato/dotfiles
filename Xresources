@@ -1,38 +1,29 @@
 ##### THIS FILE IS BEING CURRENTLY MANAGED BY URXVTCONFIG #####
 ##### CHANGES DONE TO THIS FILE MANUALLY MAY AFFECT THE FUNCTIONALITY ######
 ##### PROCEED WITH CAUTION! #####
+#### urxvt -fn 'xft:DejaVu Sans Mono for Powerline-10'
 
-! special colors
-*.foreground:  #DECF9A
-*.background:  #000000
-*.cursorColor: #DECF9A
-! black
-*.color0:      #232646
-*.color8:      #21221D
-! red
-*.color1:      #3d8d36
-*.color9:      #51394C
-! green
-*.color2:      #f8682e
-#### #6AAF6A
-*.color10:     #d64937
-! yellow
-*.color3:      #AC9768
-*.color11:     #69666B
-! blue
-###
-*.color4:      #931210
-######fdc328
-*.color12:     #6000b9
-! magenta
-*.color5:      #6F7776
-*.color13:     #CE665F
-! cyan
-*.color6:      #99116f
-*.color14:     #7e3d86
-! white
-*.color7:      #DECF9A
-*.color15:     #CCB685
+*background:  #000000
+*foreground:  #ffffff
+*color0:  #151515
+*color1:  #ff0086
+*color2:  #00c918
+*color3:  #fd8900
+*color4:  #3777e6
+*color5:  #ad00a1
+*color6:  #1faaaa
+*color7:  #d0d0d0
+*color8:  #202020
+*color9:  #ff0086
+*color10:  #00c918
+*color11:  #aba800
+*color12:  #3777e6
+*color13:  #ad00a1
+*color14:  #1faaaa
+*color15:  #ffffff
+
+*xterm*utf: on
+*xterm*utf8: on
 
 URxvt*scrollBar:         false
 URxvt*scrollBar_right:   false
@@ -42,5 +33,5 @@ URxvt*transparent:       false
 URxvt.font: xft:Monospace:pixelsize=13
 URxvt.letterSpace: 0
 
-*antialias:  false
-*autohint:   false
+*antialias:  true
+*autohint:   true
