@@ -30,7 +30,7 @@ URxvt*scrollBar_right:   false
 
 URxvt*transparent:       false
 
-URxvt.font: xft:Monospace:pixelsize=13
+URxvt.font: xft:DejaVu Sans Mono for Powerline-10:pixelsize=13
 URxvt.letterSpace: 0
 
 *antialias:  true
