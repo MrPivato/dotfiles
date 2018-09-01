@@ -2,6 +2,8 @@
 # ~/.bashrc
 #
 
+set -o vi
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -17,4 +19,4 @@ function _update_ps1() {
 
 if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-f
+fi
