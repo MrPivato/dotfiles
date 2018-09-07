@@ -5,7 +5,7 @@
 #######################################
 
 # execs
-exec_always feh --bg-scale ~/wallpaper/3.jpg
+exec_always feh --bg-scale ~/wallpaper/5.jpg
 exec_always xrandr --output VGA-0 --off --output LVDS --primary --mode 1366x768 --pos 0x0 --rotate normal --output HDMI-0 --off
 exec compton
 exec nm-applet
