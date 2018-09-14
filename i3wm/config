@@ -5,7 +5,7 @@
 #######################################
 
 # execs
-exec_always feh --bg-scale ~/wallpaper/5.jpg
+exec_always feh --bg-scale ~/wallpaper/6.jpg
 exec_always xrandr --output VGA-0 --off --output LVDS --primary --mode 1366x768 --pos 0x0 --rotate normal --output HDMI-0 --off
 exec compton
 exec nm-applet
@@ -300,7 +300,8 @@ bindsym $mod+shift+t exec qbittorrent
 # text editors
 bindsym $mod+shift+v exec urxvt -e vim
 
-# terminals
+# music
+bindsym $mod+m exec qmmp
 
 # edit i3 & i3status config
 bindsym $mod+Control+i exec urxvt -e vim ~/.config/i3/config
