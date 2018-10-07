@@ -1,3 +1,6 @@
+let g:powerline_pycmd="py3"
+set laststatus=2
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -25,7 +28,7 @@ Plugin 'file:///home/gmarik/path/to/plugin'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
+Plugin 'ascenator/L9', {'name': 'newL9'}
 Plugin 'html_FileCompletion'
 "Plugin 'Valloric/YouCompleteMe'
 " All of your Plugins must be added before the following line
@@ -57,11 +60,11 @@ function! Smart_TabComplete()
         let has_period = match(substr, '\.') != -1      " position of period, if any
         let has_slash = match(substr, '\/') != -1       " position of slash, if any
         if (!has_period && !has_slash)
-                return "\<C-X>\<C-O>"
+                return "\<C-X>\<C-P>" 
         elseif ( has_slash )
                 return "\<C-X>\<C-F>"
         else
-                return "\<C-X>\<C-P>" 
+                return "\<C-X>\<C-O>"
         endif
 endfunction
 inoremap <tab> <c-r>=Smart_TabComplete()<CR>
@@ -79,7 +82,7 @@ set lazyredraw
 set showmatch
 set incsearch
 set hlsearch
-set encoding=utf-8
+set encoding=UTF-8
 set relativenumber
 set clipboard=unnamedplus
 set matchpairs+=<:> 
