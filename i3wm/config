@@ -176,11 +176,11 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-for_window [class=".*"] border pixel 3
+for_window [class=".*"] border pixel 2
 
 # window colors
 #                       border  backgrd text    indicat
-client.focused          #decf9a #decf9a #decf9a #decf9a
+client.focused          #1034A6 #1034A6 #1034A6 #1034A6
 client.unfocused        #161d26 #161d26 #161d26 #161d26
 client.focused_inactive #161d26 #161d26 #161d26 #161d26   
 client.urgent 	        #ac443e #ac443e #ac443e #ac443e
@@ -207,9 +207,9 @@ bar {
 	    	
 		#                  border	background	text
 		
-		focused_workspace  #0b1414 	#0b1414		#ac443e
-		inactive_workspace #0b1414	#0b1414 	#ac9768
-		urgent_workspace   #ac443e	#ac443e		#0b1414
+		focused_workspace  #0b1414 	#0b1414		#1034A6
+		inactive_workspace #0b1414	#0b1414 	#DDDDDD
+		urgent_workspace   #1034A6	#1034A6		#0b1414
 	}
 }
 
@@ -227,9 +227,9 @@ bar{
     font pango:Monospace 10
 
         colors {
-        	statusline 	#decf9a
+        	statusline 	#CCCCCC
         	background 	#0b1414
-		separator 	#172f4c
+		    separator 	#283f5d
 	}
 }
 
@@ -270,7 +270,7 @@ bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 #bindsym $mod+Control+m exec firefox <botar link aqui>
 
 # lock screen
-bindsym $mod+shift+x exec i3lock
+bindsym $mod+shift+l exec i3lock
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
