@@ -9,9 +9,12 @@
 general {
         colors = true
         interval = 1
-        color_good =     '#51394c'  
-        color_degraded = '#decf9a'  
-        color_bad =      '#ac443e'
+        #color_good =     '#51394c'  
+        color_good =     '#00FF00'  
+        #color_degraded = '#decf9a'  
+        color_degraded = '#3399FF'  
+        #color_bad =      '#ac443e'
+        color_bad =      '#FF0000'
 }
 
 order += "run_watch DHCP"
@@ -30,8 +33,8 @@ wireless _first_ {
 }
 
 ethernet _first_ {
-        format_up = "Eth: Conectada" 
-        format_down = "Eth: Desconetada"
+        format_up = "Eth: UP" 
+        format_down = "Eth: DOWN"
 }
 #####sed -ie 's/battery 0/battery 1/g' .config/blocks/config
 battery 1 {
@@ -39,7 +42,7 @@ battery 1 {
 }
 
 tztime local {
-	format = "%d_%m_%Y, é %A meus bacanos, %H:%M:%S"
+	format = "%d_%m_%Y, é %A meus bacanos, %H:%M:%S ||"
 }
 
 load {
