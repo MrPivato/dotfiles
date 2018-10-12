@@ -5,7 +5,7 @@
 #######################################
 
 # execs
-exec_always feh --bg-scale ~/wallpaper/6.jpg
+exec_always feh --bg-scale ~/wallpaper/7.jpg
 exec_always xrandr --output VGA-0 --off --output LVDS --primary --mode 1366x768 --pos 0x0 --rotate normal --output HDMI-0 --off
 exec compton
 exec nm-applet
@@ -176,11 +176,11 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 1
 
 # window colors
 #                       border  backgrd text    indicat
-client.focused          #1034A6 #1034A6 #1034A6 #1034A6
+client.focused          #EA171E #EA171E #EA171E #EA171E
 client.unfocused        #161d26 #161d26 #161d26 #161d26
 client.focused_inactive #161d26 #161d26 #161d26 #161d26   
 client.urgent 	        #ac443e #ac443e #ac443e #ac443e
@@ -199,17 +199,17 @@ bar {
 	
     	tray_output primary
         
-    	font pango:System San Fransisco Display 18
+    	font pango:System San Fransisco Display 17
     
 	colors {
-		background #0b1414
+		background #000000
 		separator #271b1c
 	    	
 		#                  border	background	text
 		
-		focused_workspace  #0b1414 	#0b1414		#1034A6
-		inactive_workspace #0b1414	#0b1414 	#DDDDDD
-		urgent_workspace   #1034A6	#1034A6		#0b1414
+		focused_workspace  #000000 	#000000		#EA171E
+		inactive_workspace #000000	#000000 	#DDDDDD
+		urgent_workspace   #EA171E	#EA171E		#000000
 	}
 }
 
@@ -224,11 +224,11 @@ bar{
 #   status_command i3blocks	
 	status_command i3status -c ~/.config/blocks/config
 #   font DejaVu Sans Mono for Powerline-10
-    font pango:Monospace 10
+    font pango:Monospace 9
 
         colors {
         	statusline 	#CCCCCC
-        	background 	#0b1414
+        	background 	#000000
 		    separator 	#283f5d
 	}
 }
