@@ -5,7 +5,7 @@
 #######################################
 
 # execs
-exec_always feh --bg-scale ~/wallpaper/7.jpg
+exec_always feh --bg-scale ~/wallpaper/8.png
 exec_always xrandr --output VGA-0 --off --output LVDS --primary --mode 1366x768 --pos 0x0 --rotate normal --output HDMI-0 --off
 exec compton
 exec nm-applet
@@ -56,7 +56,7 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -nb black -sb purple -l 5 -sf salmon
+bindsym $mod+d exec dmenu_run -nb black -sb red -l 5 -sf black
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
