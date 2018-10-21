@@ -29,7 +29,7 @@ order += "tztime local"
 
 wireless _first_ {
         format_up = "Wi-Fi: (%quality-%essid) %ip"
-        format_down = "Wi-Fi Fora/Desconectado"
+        format_down = "Wi-Fi DOWN"
 }
 
 ethernet _first_ {
