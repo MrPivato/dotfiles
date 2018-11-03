@@ -12,7 +12,8 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
+"Plugin 'NLKNguyen/pipe.vim' "required
+"Plugin 'NLKNguyen/pipe-mysql.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -30,11 +31,13 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 Plugin 'ascenator/L9', {'name': 'newL9'}
 Plugin 'html_FileCompletion'
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+" Bundle 'jistr/vim-nerdtree-tabs'
 "Plugin 'Valloric/YouCompleteMe'
 "All of your Plugins must be added before the following line
 
-"Plugin 'NLKNguyen/pipe.vim' "required
-"Plugin 'NLKNguyen/pipe-mysql.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -49,6 +52,30 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "
+
+autocmd vimenter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
+" let g:NERDTreeDirArrowExpandable = '▸'
+" let g:NERDTreeDirArrowCollapsible = '▾'
+
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
 
 function! Smart_TabComplete()
         let line = getline('.')                         " current line
@@ -97,13 +124,18 @@ set splitbelow
 set splitright
 set nowrap
 
+map <C-c> :NERDTreeToggle<CR><C-g>
+
 nnoremap > gt
 nnoremap < gT
 
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nnoremap + <C-A>
+nnoremap - <C-X>
+
+nnoremap j <C-W><C-J>
+nnoremap k <C-W><C-K>
+nnoremap l <C-W><C-L>
+nnoremap h <C-W><C-H>
 
 nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <buffer> <F9> :exec '!python3' shellescape(@%, 1)<cr>
