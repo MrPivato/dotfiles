@@ -1,5 +1,8 @@
 let g:powerline_pycmd="py3"
 set laststatus=2
+let g:html_indent_script1 = "inc" 
+let g:html_indent_style1 = "inc" 
+let g:html_indent_inctags = "html,body,head,tbody" 
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -31,7 +34,7 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 Plugin 'ascenator/L9', {'name': 'newL9'}
 Plugin 'html_FileCompletion'
-
+Bundle 'bitfyre/vim-indent-html'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 " Bundle 'jistr/vim-nerdtree-tabs'
@@ -59,8 +62,8 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-let g:NERDTreeDirArrowExpandable = '+'
-let g:NERDTreeDirArrowCollapsible = '-'
+let g:NERDTreeDirArrowExpandable = '++'
+let g:NERDTreeDirArrowCollapsible = '--'
 " let g:NERDTreeDirArrowExpandable = '▸'
 " let g:NERDTreeDirArrowCollapsible = '▾'
 
@@ -99,14 +102,19 @@ function! Smart_TabComplete()
 endfunction
 inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
+if has('mouse')
+  set mouse=a
+endif
+
 colorscheme delek
 syntax on
+filetype indent on
+set smartindent
 set tabstop=4
 set softtabstop=4
 set expandtab
 set number
 set showcmd
-filetype indent on
 set lazyredraw
 set wildmenu
 set showmatch
@@ -116,7 +124,6 @@ set encoding=UTF-8
 set relativenumber
 set clipboard=unnamedplus
 set matchpairs+=<:> 
-set expandtab
 set nobackup
 set noswapfile
 set foldlevel=99
@@ -132,10 +139,10 @@ nnoremap < gT
 nnoremap + <C-A>
 nnoremap - <C-X>
 
-nnoremap j <C-W><C-J>
-nnoremap k <C-W><C-K>
-nnoremap l <C-W><C-L>
 nnoremap h <C-W><C-H>
+" nnoremap j <C-W><C-J>
+" nnoremap k <C-W><C-K>
+nnoremap l <C-W><C-L>
 
 nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <buffer> <F9> :exec '!python3' shellescape(@%, 1)<cr>
