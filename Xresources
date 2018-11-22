@@ -28,6 +28,7 @@ URxvt*transparent:       false
 
 URxvt.font: xft:DejaVu Sans Mono for Powerline-10:pixelsize=13
 URxvt.letterSpace: 0
+URxvt*geometry: 124x28
 
 *antialias:  true
 *autohint:   true
