@@ -1,8 +1,8 @@
 let g:powerline_pycmd="py3"
 set laststatus=2
-let g:html_indent_script1 = "inc" 
-let g:html_indent_style1 = "inc" 
-let g:html_indent_inctags = "html,body,head,tbody" 
+"let g:html_indent_script1 = "inc" 
+"let g:html_indent_style1 = "inc" 
+"let g:html_indent_inctags = "html,body,head,tbody" 
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -14,33 +14,25 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
+" Keep Plugin commands between vundle#begin/end.
 Plugin 'VundleVim/Vundle.vim'
 "Plugin 'NLKNguyen/pipe.vim' "required
 "Plugin 'NLKNguyen/pipe-mysql.vim'
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
 Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
+Plugin 'ayu-theme/ayu-vim'
+Plugin 'junegunn/seoul256.vim'
 Plugin 'ascenator/L9', {'name': 'newL9'}
-Plugin 'html_FileCompletion'
+"Plugin 'html_FileCompletion'
 Bundle 'bitfyre/vim-indent-html'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 " Bundle 'jistr/vim-nerdtree-tabs'
 "Plugin 'Valloric/YouCompleteMe'
-"All of your Plugins must be added before the following line
 
+"All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -54,11 +46,12 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-"
 
-autocmd vimenter * NERDTree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+"autocmd vimenter * NERDTree
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
@@ -106,7 +99,7 @@ if has('mouse')
   set mouse=a
 endif
 
-colorscheme delek
+colorscheme challenger_deep
 syntax on
 filetype indent on
 set smartindent
@@ -130,6 +123,16 @@ set foldlevel=99
 set splitbelow
 set splitright
 set nowrap
+
+command! -bang E e<bang>
+command! -bang Q q<bang>
+command! -bang W w<bang>
+command! -bang QA qa<bang>
+command! -bang Qa qa<bang>
+command! -bang Wa wa<bang>
+command! -bang WA wa<bang>
+command! -bang Wq wq<bang>
+command! -bang WQ wq<bang>
 
 map <C-c> :NERDTreeToggle<CR><C-g>
 
