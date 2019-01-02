@@ -1,8 +1,5 @@
 let g:powerline_pycmd="py3"
 set laststatus=2
-"let g:html_indent_script1 = "inc" 
-"let g:html_indent_style1 = "inc" 
-"let g:html_indent_inctags = "html,body,head,tbody" 
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -30,7 +27,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 " Bundle 'jistr/vim-nerdtree-tabs'
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 
 "All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -73,27 +70,27 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-function! Smart_TabComplete()
-        let line = getline('.')                         " current line
-
-        let substr = strpart(line, -1, col('.')+1)      " from the start of the current
-        " line to one character right
-        " of the cursor
-        let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
-        if (strlen(substr)==0)                          " nothing to match on empty string
-                return "\<tab>"
-        endif
-        let has_period = match(substr, '\.') != -1      " position of period, if any
-        let has_slash = match(substr, '\/') != -1       " position of slash, if any
-        if (!has_period && !has_slash)
-                return "\<C-X>\<C-P>" 
-        elseif ( has_slash )
-                return "\<C-X>\<C-F>"
-        else
-                return "\<C-X>\<C-O>"
-        endif
-endfunction
-inoremap <tab> <c-r>=Smart_TabComplete()<CR>
+"function! Smart_TabComplete()
+"        let line = getline('.')                         " current line
+"
+"        let substr = strpart(line, -1, col('.')+1)      " from the start of the current
+"        " line to one character right
+"        " of the cursor
+"        let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
+"        if (strlen(substr)==0)                          " nothing to match on empty string
+"                return "\<tab>"
+"        endif
+"        let has_period = match(substr, '\.') != -1      " position of period, if any
+"        let has_slash = match(substr, '\/') != -1       " position of slash, if any
+"        if (!has_period && !has_slash)
+"                return "\<C-X>\<C-P>" 
+"        elseif ( has_slash )
+"                return "\<C-X>\<C-F>"
+"        else
+"                return "\<C-X>\<C-O>"
+"        endif
+"endfunction
+"inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
 if has('mouse')
   set mouse=a
@@ -136,8 +133,8 @@ command! -bang WQ wq<bang>
 
 map <C-c> :NERDTreeToggle<CR><C-g>
 
-nnoremap > gt
-nnoremap < gT
+"nnoremap > gt
+"nnoremap < gT
 
 nnoremap + <C-A>
 nnoremap - <C-X>
@@ -148,7 +145,11 @@ nnoremap h <C-W><C-H>
 nnoremap l <C-W><C-L>
 
 nnoremap <leader><space> :nohlsearch<CR>
+
+map <F7> : !g++ % && ./a.out <CR>
+map <F8> : !gcc % && ./a.out <CR>
 nnoremap <buffer> <F9> :exec '!python3' shellescape(@%, 1)<cr>
+map <F10> :w<CR> :!clear; make<CR> :!./%<<CR>
 
 "" tags html ----------------------------------------------------------------
 autocmd FileType php,html inoremap <html <!DOCTYPE<Space>html><Enter><html><Enter><head><Enter><title></title><Enter><meta<Space>charset="UTF-8"><Enter><link<Space>rel="stylesheet"<Space>type="text/css"<Space>href="main.css"><Enter></head><Enter><body><Enter><Enter><Enter><Enter></body><Enter></html>
