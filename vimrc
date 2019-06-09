@@ -26,8 +26,8 @@ Bundle 'bitfyre/vim-indent-html'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-" Bundle 'jistr/vim-nerdtree-tabs'
-Plugin 'Valloric/YouCompleteMe'
+"Bundle 'jistr/vim-nerdtree-tabs'
+"Plugin 'Valloric/YouCompleteMe'
 
 "All of your Plugins must be added before the following line
 call vundle#end()            " required
