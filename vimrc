@@ -1,6 +1,9 @@
 " --------------------------
 " Gabriel Pivato .vimrc file
 " --------------------------
+" Install:
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "
 call plug#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
