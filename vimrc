@@ -5,6 +5,8 @@
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "
+set nocompatible | filetype indent plugin on | syn on
+
 call plug#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -18,6 +20,11 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'git://git.wincent.com/command-t.git'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
+Plug 'marcweber/vim-addon-manager'
 call plug#end()
 
 if has('mouse')
@@ -117,6 +124,8 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -227,3 +236,56 @@ let g:ctrlp_custom_ignore = {
   \ }
 let g:ctrlp_user_command = 'find %s -type f' 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+nnoremap <buffer> <F9> :exec '!python3.7' shellescape(@%, 1)<cr>
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+fun! SetupVAM()
+  let c = get(g:, 'vim_addon_manager', {})
+  let g:vim_addon_manager = c
+  let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
+
+  " Force your ~/.vim/after directory to be last in &rtp always:
+  " let g:vim_addon_manager.rtp_list_hook = 'vam#ForceUsersAfterDirectoriesToBeLast'
+
+  " most used options you may want to use:
+  " let c.log_to_buf = 1
+  " let c.auto_install = 0
+  let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
+  if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
+    execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '
+        \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
+  endif
+
+  " This provides the VAMActivate command, you could be passing plugin names, too
+  call vam#ActivateAddons([], {})
+endfun
+call SetupVAM()
+
+" ACTIVATING PLUGINS
+
+" OPTION 1, use VAMActivate
+ActivateAddons vim-snippets snipmate
+" VAMActivate PLUGIN_NAME PLUGIN_NAME ..
+
+" OPTION 2: use call vam#ActivateAddons
+"call vam#ActivateAddons([PLUGIN_NAME], {})
+" use <c-x><c-p> to complete plugin names
+
+" OPTION 3: Create a file ~/.vim-scripts putting a PLUGIN_NAME into each line (# for comments)
+" See lazy loading plugins section in README.md for details
+" call vam#Scripts('~/.vim-scripts', {'tag_regex': '.*'})
